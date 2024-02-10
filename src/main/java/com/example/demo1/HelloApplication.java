@@ -104,12 +104,12 @@ public class HelloApplication extends Application {
             if (!artistName.isEmpty()) { // Check if the artist name is provided
                 try {
                     String artistDetails = getArtistDetails(artistName);
-                    String topTracks = fetchTopTracksAndUpdateUI(artistDetails);
+                    String topTracks = fetchTopTracks(artistDetails);
                     // Update UI elements with artist details and top tracks
                     artistText1.setText("Artist Details: " + artistDetails);
                     artistText2.setText("Top Tracks: " + topTracks);
                 } catch (IOException | InterruptedException e) {
-                    warning.setText("Error occurred while fetching data!");
+                    e.printStackTrace();
                 }
             } else {
                 warning.setText("Insert an artist!");
@@ -149,7 +149,7 @@ public class HelloApplication extends Application {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQD0QELco500LKku78nzxlQOAzT1TA73h-jCYXS3cAuQK8LKr2lV5ITvKWa7zaT_mfl1qvJd2nr6l7uWNwvlcSJEK6UIAL03-s7rtYLXAGtjR6gwPDA") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQB_3hGLVjpwBsF5Rpqs5Y3wvssw3V4p1LkZLcRs-wq685KzlDs1Xl6R_4-rEHgETnOzK_h2aL9o1mQ3kpg_BSBTVw5NsqAUymLlUhkSKnmMvvDorIY") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -171,7 +171,7 @@ public class HelloApplication extends Application {
                     .getAsString();
 
             // Fetch top tracks for the artist
-            fetchTopTracksAndUpdateUI(artistId);
+            fetchTopTracks(artistId);
         } else {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + statusCode);
@@ -179,13 +179,13 @@ public class HelloApplication extends Application {
         return query;
     }
 
-    private String fetchTopTracksAndUpdateUI(String artistId) throws IOException, InterruptedException {
+    private String fetchTopTracks(String artistId) throws IOException, InterruptedException {
         String apiUrl = "https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQD0QELco500LKku78nzxlQOAzT1TA73h-jCYXS3cAuQK8LKr2lV5ITvKWa7zaT_mfl1qvJd2nr6l7uWNwvlcSJEK6UIAL03-s7rtYLXAGtjR6gwPDA") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQB_3hGLVjpwBsF5Rpqs5Y3wvssw3V4p1LkZLcRs-wq685KzlDs1Xl6R_4-rEHgETnOzK_h2aL9o1mQ3kpg_BSBTVw5NsqAUymLlUhkSKnmMvvDorIY") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
