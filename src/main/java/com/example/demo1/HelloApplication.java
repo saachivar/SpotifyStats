@@ -12,11 +12,21 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     private static final String API_URL = "https://api.spotify.com/v1/search";
-    private static final String ACCESS_TOKEN = SpotifyAuthenticator.getAccessToken();
+    private static final String ACCESS_TOKEN;
+
+    static {
+        try {
+            ACCESS_TOKEN = SpotifyAuthenticator.getAccessToken();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
 
-
+        String accessToken = SpotifyAuthenticator.getAccessToken();
+        System.out.println("Access token: " + accessToken);
         // Creating an HBox as the root node
         HBox root = new HBox();
 
@@ -53,7 +63,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("ad;fkfk");
+        System.out.println("ad;fkfkkk");
         launch();
     }
 }
