@@ -45,6 +45,8 @@ public class HelloApplication extends Application {
 
     private TextField insertBox;
     private Text warning;
+    private Text artistText1;
+    private Text artistText2;
 
     private TextArea topTracksTextArea;
 
@@ -88,8 +90,8 @@ public class HelloApplication extends Application {
         ImageView artistImageView = new ImageView();
         Text mainArtistText = new Text("text");
         HBox artistInfo2 = new HBox();
-        Text artistText1 = new Text("text");
-        Text artistText2 = new Text("text");
+        artistText1 = new Text("text");
+        artistText2 = new Text("text");
         warning = new Text("");
 
 
@@ -104,10 +106,11 @@ public class HelloApplication extends Application {
             if (!artistName.isEmpty()) { // Check if the artist name is provided
                 try {
                     String artistDetails = getArtistDetails(artistName);
-                    String topTracks = fetchTopTracks(artistDetails);
+                    System.out.println(artistDetails);
+                  /*  String topTracks = fetchTopTracks(artistDetails);
                     // Update UI elements with artist details and top tracks
                     artistText1.setText("Artist Details: " + artistDetails);
-                    artistText2.setText("Top Tracks: " + topTracks);
+                    artistText2.setText("Top Tracks: " + topTracks); */
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -196,6 +199,8 @@ public class HelloApplication extends Application {
             String responseBody = response.body();
             // Process the JSON response here
             System.out.println("Top Tracks: " + responseBody);
+          //  artistText1.setText("Artist Details: " + artistDetails);
+            artistText2.setText("Top Tracks: " + responseBody);
 
         } else {
             // Handle unsuccessful response
