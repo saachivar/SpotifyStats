@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.application.Application;
@@ -187,6 +188,23 @@ public class HelloApplication extends Application {
             throw new IOException("Failed to retrieve top tracks from Spotify API. Response code: " + statusCode);
         }
         return apiUrl;
+    }
+    private String extractGenre(JsonObject artistObject) {
+        // Extract genre from the artistObject and return it
+        // For example:
+        JsonArray genresArray = artistObject.getAsJsonArray("genres");
+        if (genresArray.size() > 0) {
+            return genresArray.get(0).getAsString(); // Assuming you want to get the first genre
+        } else {
+            return "Unknown";
+        }
+    }
+
+    private String extractImageUrl(JsonObject artistObject) {
+        // Extract image URL from the artistObject and return it
+        // For example:
+        JsonObject imagesObject = artistObject.getAsJsonArray("images").get(0).getAsJsonObject();
+        return imagesObject.get("url").getAsString();
     }
 
     public static void main(String[] args) {
