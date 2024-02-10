@@ -3,6 +3,7 @@ module com.example.demo1 {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.net.http;
+    requires org.jsoup;
 
 
     opens com.example.demo1 to javafx.fxml;

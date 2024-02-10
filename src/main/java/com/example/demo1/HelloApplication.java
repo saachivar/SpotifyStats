@@ -15,6 +15,11 @@ import java.io.IOException;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 
 public class HelloApplication extends Application {
     private static final String API_URL = "https://api.spotify.com/v1/search";
@@ -77,6 +82,7 @@ public class HelloApplication extends Application {
         root.getChildren().addAll(leftPane, rightPane);
 
         Scene scene = new Scene(root, 800, 600);
+        this.scrapeBillBoard();
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -84,6 +90,22 @@ public class HelloApplication extends Application {
     }
 
 
+    public void scrapeBillBoard() {
+        try {
+            // Connect to the website and get the HTML
+            Document document = Jsoup.connect("https://www.billboard.com/charts/artist-100/").get();
+
+            // Extract elements you're interested in
+            Elements elements = document.select("h1"); // Select all <h1> elements
+
+            // Iterate over the elements and print them
+            for (Element element : elements) {
+                System.out.println(element.text());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
