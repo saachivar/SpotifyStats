@@ -36,8 +36,9 @@ public class SpotifyAuthenticator {
 
         int statusCode = response.statusCode();
         if (statusCode == 200) {
-            JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonObject();
-            return jsonResponse.get("access_token").getAsString();
+            return response.body(); // to return the json string
+            //JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonObject();
+            //return jsonResponse.get("access_token").getAsString();
         } else {
             throw new IOException("Failed to obtain access token. Response code: " + statusCode);
         }
