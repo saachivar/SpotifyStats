@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
@@ -42,8 +41,12 @@ public class HelloApplication extends Application {
 
         //LeftVBox elements
         Text insertPrompt = new Text("Insert an artist:");
+        Font font = Font.font(insertPrompt.getFont().getFamily(), 20);
+        insertPrompt.setFont(font);
         TextField insertBox = new TextField();
         Text choosePrompt = new Text("... OR choose from the top Billboard 100");
+        Font font2 = Font.font(choosePrompt.getFont().getFamily(), 20);
+        choosePrompt.setFont(font2);
         Text websiteText = new Text("text from website");
         Button dataButton = new Button("Get Data");
 
@@ -58,9 +61,9 @@ public class HelloApplication extends Application {
 
         // Setting VBox to take half of the available space
         leftPane.setPrefWidth(400);
-        leftPane.setPadding(new Insets(40));
+        leftPane.setPadding(new Insets(25));
         rightPane.setPrefWidth(400);
-        rightPane.setPadding(new Insets(40));
+        rightPane.setPadding(new Insets(25));
 
 
 
