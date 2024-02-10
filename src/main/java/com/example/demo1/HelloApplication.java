@@ -39,6 +39,8 @@ public class HelloApplication extends Application {
         }
     }
 
+    private TextField insertBox;
+
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
@@ -61,7 +63,7 @@ public class HelloApplication extends Application {
         Font font = Font.font(insertPrompt.getFont().getFamily(), 20);
         insertPrompt.setStyle("-fx-font: italic 20px \"System\";");
         insertPrompt.setFont(font);
-        TextField insertBox = new TextField();
+        insertBox = new TextField();
         Text choosePrompt = new Text("... OR choose from the top Billboard 100");
         Font font2 = Font.font(choosePrompt.getFont().getFamily(), 14);
         choosePrompt.setFont(font2);
@@ -69,7 +71,7 @@ public class HelloApplication extends Application {
         choosePrompt.setFill(Color.BLANCHEDALMOND);
         leftPane.setSpacing(10);
         choosePrompt.setFont(font2);
-        ArtistScrape artistScrape = new ArtistScrape();
+        ArtistScrape artistScrape = new ArtistScrape(this);
         Text websiteText = new Text("Text from website");
         Button dataButton = new Button("Get Data");
         VBox rightPane = new VBox();
@@ -110,8 +112,8 @@ public class HelloApplication extends Application {
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
-        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt, dataButton);
-        leftPane.getChildren().add(artistScrape);
+        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt,artistScrape, dataButton);
+
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
         // Adding the VBox nodes as children to the HBox
@@ -187,6 +189,10 @@ public class HelloApplication extends Application {
             throw new IOException("Failed to retrieve top tracks from Spotify API. Response code: " + statusCode);
         }
         return apiUrl;
+    }
+
+    public void setTextFieldText(String text) {
+        insertBox.setText(text);
     }
 
     public static void main(String[] args) {

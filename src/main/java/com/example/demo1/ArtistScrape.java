@@ -21,7 +21,9 @@ import org.jsoup.select.Elements;
 
 import static com.example.demo1.SpotifyAuthenticator.getAccessToken;
 public class ArtistScrape extends VBox {
-    public ArtistScrape() {
+    private HelloApplication main;
+    public ArtistScrape(HelloApplication main) {
+        this.main = main;
         this.scrapeBillBoard();
     }
     public void scrapeBillBoard() {
@@ -31,8 +33,7 @@ public class ArtistScrape extends VBox {
 
             // Extract elements you're interested in
             Elements elements = document.select("h3"); // Select all <h1> elements
-
-            Text[] artists = new Text[elements.size()];
+            Button[] artistButtons = new Button[25];
             System.out.println(elements.size());
 
             // Loop through the elements and create Text objects
@@ -44,10 +45,17 @@ public class ArtistScrape extends VBox {
                     String text = element.text();
 
                     System.out.println(text);
-
+                    artistButtons[i] = new Button();
                     // Create a Text object and add it to the array
-                    artists[i] = new Text(text);
-                    this.getChildren().add(artists[i]);
+                    artistButtons[i].setText(text);
+                    // Set the action to be performed when the button is clicked
+                    artistButtons[i].setOnAction(e -> {
+                        main.setTextFieldText(text);
+                        System.out.println(text);
+                        // Add your code here to handle the button click event
+                        // For example, you can open a new window, update UI, etc.
+                    });
+                    this.getChildren().add(artistButtons[i]);
                 } else {
                     System.out.println("nulll");
                 }
