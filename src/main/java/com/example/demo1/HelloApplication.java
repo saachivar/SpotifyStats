@@ -20,6 +20,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import static com.example.demo1.SpotifyAuthenticator.getAccessToken;
+
 
 public class HelloApplication extends Application {
     private static final String API_URL = "https://api.spotify.com/v1/search";
@@ -27,7 +29,7 @@ public class HelloApplication extends Application {
 
     static {
         try {
-            ACCESS_TOKEN = SpotifyAuthenticator.getAccessToken();
+            ACCESS_TOKEN = getAccessToken();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +38,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        String accessToken = SpotifyAuthenticator.getAccessToken();
+        String accessToken = getAccessToken();
         System.out.println("Access token: " + accessToken);
         // Creating an HBox as the root node
         HBox root = new HBox();
@@ -54,6 +56,18 @@ public class HelloApplication extends Application {
         choosePrompt.setFont(font2);
         Text websiteText = new Text("text from website");
         Button dataButton = new Button("Get Data");
+        dataButton.setOnAction(event -> {
+            try {
+                String token = getAccessToken(); // Rename the variable to 'token'
+                // Use 'token' as needed
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+                // Handle the exception as needed
+            }
+        });
+
+
+
 
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();

@@ -24,7 +24,6 @@ public class SpotifyAuthenticator {
     public static String getAccessToken() throws IOException, InterruptedException {
         String authString = CLIENT_ID + ":" + CLIENT_SECRET;
         String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
-
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(AUTH_URL))
