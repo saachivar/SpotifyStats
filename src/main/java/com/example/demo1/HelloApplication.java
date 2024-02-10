@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.application.Application;
@@ -51,9 +52,9 @@ public class HelloApplication extends Application {
 
         // Creating an HBox as the root node
         HBox root = new HBox();
-        root.setBackground(new Background(new BackgroundFill(Color.FORESTGREEN, new CornerRadii(10) ,Insets.EMPTY)));
+        root.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, new CornerRadii(10) ,Insets.EMPTY)));
 
-        root.setStyle("-fx-border-color: BLACK; -fx-border-width: 15px;");
+        root.setStyle("-fx-border-color:BLACK; -fx-border-width: 15px;");
 
         // Creating two VBox nodes
         VBox leftPane = new VBox();
@@ -93,11 +94,21 @@ public class HelloApplication extends Application {
             String artistName = insertBox.getText();
             try {
                 String artistDetails = getArtistDetails(artistName);
-                String[] artistDetailsArray = artistDetails.split("\n"); // Split artist details into multiple lines
-                StringBuilder artistDetailsText = new StringBuilder();
-                for (String detail : artistDetailsArray) {
-                    artistDetailsText.append(detail).append("\n"); // Update the artistText with artist details
-                } artistText1.setText(artistDetailsText.toString());
+                JsonObject json = JsonParser.parseString(artistDetails).getAsJsonObject();
+                JsonObject artistObject = json.getAsJsonObject("artists")
+                        .getAsJsonArray("items")
+                        .get(0)
+                        .getAsJsonObject();
+
+                // Extract artist details
+                String name = artistObject.get("name").getAsString();
+                String genre = extractGenre(artistObject);
+
+                // Update artistText1 with artist details
+                artistText1.setText("Artist: " + name );
+
+                // Update artistText2 with additional artist details
+                artistText2.setText("\nGenre: " + genre );
             }catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -188,12 +199,24 @@ public class HelloApplication extends Application {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve top tracks from Spotify API. Response code: " + statusCode);
         }
-        return apiUrl;
+        return response.body();
     }
 
     public void setTextFieldText(String text) {
         insertBox.setText(text);
     }
+    private String extractGenre(JsonObject artistObject) {
+        // Extract genre from the artistObject and return it
+        // For example:
+        JsonArray genresArray = artistObject.getAsJsonArray("genres");
+        if (genresArray.size() > 0) {
+            return genresArray.get(0).getAsString(); // Assuming you want to get the first genre
+        } else {
+            return "Unknown";
+        }
+    }
+
+
 
     public static void main(String[] args) {
         System.out.println("sduhksjdhf");
