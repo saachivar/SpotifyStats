@@ -30,7 +30,8 @@ import java.net.http.HttpResponse;
 
 import javafx.scene.paint.Color;
 
-
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 
 import static com.example.demo1.SpotifyAuthenticator.getAccessToken;
@@ -94,19 +95,16 @@ public class HelloApplication extends Application {
         leftPane.setPadding(new Insets(25));
         rightPane.setPrefWidth(400);
         rightPane.setPadding(new Insets(25));
+
         dataButton.setOnAction(event -> {
+            String artistName = insertBox.getText();
             try {
-                String token = getAccessToken(); // Rename the variable to 'token'
-                // Use 'token' as needed
-                String artistDetails = getArtistDetails(insertBox.getText());
-                mainArtistText.setText(artistDetails);
+                String artistDetails = getArtistDetails(artistName);
+                artistText1.setText(artistDetails); // Update the artistText with artist details
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
-                // Handle the exception as needed
             }
         });
-
-
 
 
 
@@ -140,12 +138,11 @@ public class HelloApplication extends Application {
         String query = artistName.replace(" ", "%20"); // Encode spaces in the artist name
         String apiUrl = API_URL + "?q=" + query + "&type=artist";
         String accessToken = SpotifyAuthenticator.getAccessToken();
-        //String apiUrl = "https://api.spotify.com/v1/search?q=" + artistName + "&type=artist";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQCl0XJ2z1zxoTPgKE2CP92LoXXr6uXBBy9XncuIvYkM5LStjBM-S3w23_-02F_OB6RjdffJ6uSh_aF1IVzXKyXAeRvRoOVcZxc1XpSep7zVuQIWtBw")
+                .header("Authorization", "Bearer " + accessToken)
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -153,14 +150,40 @@ public class HelloApplication extends Application {
         if (response.statusCode() == 200) {
             // Parse the JSON response and extract the artist details
             JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonObject();
-            // For example, extract the artist name from the response
+            // Extract the artist name from the response
             artistName = jsonResponse.getAsJsonObject("artists").getAsJsonArray("items")
                     .get(0).getAsJsonObject().get("name").getAsString();
-            return artistName; // Return the artist details
+            // Extract the artist ID
+            String artistId = jsonResponse.getAsJsonObject("artists").getAsJsonArray("items")
+                    .get(0).getAsJsonObject().get("id").getAsString();
+            // Fetch top tracks of the artist
+            String topTracksUrl = "https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US";
+            HttpRequest topTracksRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(topTracksUrl))
+                    .header("Authorization", "Bearer " + accessToken)
+                    .build();
+            HttpResponse<String> topTracksResponse = httpClient.send(topTracksRequest, HttpResponse.BodyHandlers.ofString());
+            if (topTracksResponse.statusCode() == 200) {
+                // Parse the JSON response and extract the top tracks
+                JsonArray topTracksArray = JsonParser.parseString(topTracksResponse.body()).getAsJsonObject().getAsJsonArray("tracks");
+                StringBuilder topTracks = new StringBuilder();
+                topTracks.append("Top Songs of ").append(artistName).append(":\n");
+                for (JsonElement trackElement : topTracksArray) {
+                    JsonObject track = trackElement.getAsJsonObject();
+                    String trackName = track.get("name").getAsString();
+                    String trackPreviewUrl = track.get("preview_url").getAsString();
+                    topTracks.append("- ").append(trackName).append(": ").append(trackPreviewUrl).append("\n");
+                }
+                return topTracks.toString(); // Return artist details and top songs
+            } else {
+                throw new IOException("Failed to retrieve top tracks of the artist from Spotify API. Response code: " + topTracksResponse.statusCode());
+            }
         } else {
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + response.statusCode());
         }
-    }
+    } // getArtistDetails
+
+
     public void scrapeBillBoard() {
         try {
             // Connect to the website and get the HTML
@@ -182,7 +205,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("ad;idfgdfg");
+        System.out.println("sduhksjdhf");
         launch();
     }
 }
