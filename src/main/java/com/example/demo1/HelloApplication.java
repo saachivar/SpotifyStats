@@ -41,6 +41,7 @@ public class HelloApplication extends Application {
     }
 
     private TextField insertBox;
+    private Text warning;
 
 
     @Override
@@ -82,6 +83,7 @@ public class HelloApplication extends Application {
         HBox artistInfo2 = new HBox();
         Text artistText1 = new Text("text");
         Text artistText2 = new Text("text");
+        warning = new Text("");
 
 
         // Setting VBox to take half of the available space
@@ -110,7 +112,8 @@ public class HelloApplication extends Application {
                 // Update artistText2 with additional artist details
                 artistText2.setText("\nGenre: " + genre );
             }catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+
+                warning.setText("Insert an artist!");
             }
         });
 
@@ -123,7 +126,7 @@ public class HelloApplication extends Application {
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
-        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt,artistScrape, dataButton);
+        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt,artistScrape, dataButton, warning);
 
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
