@@ -76,7 +76,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("ad;fkfkkkhjhj");
+        System.out.println("ad;fkfkkkhjhji");
         launch();
     }
 }
