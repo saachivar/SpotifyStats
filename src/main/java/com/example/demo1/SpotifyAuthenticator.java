@@ -13,9 +13,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class SpotifyAuthenticator {
-    private static final String CLIENT_ID = "your_client_id";
-    private static final String CLIENT_SECRET = "your_client_secret";
+    private static final String CLIENT_ID = "acf4183c24a3497dbacebe6795f92812";
+    private static final String CLIENT_SECRET = "19a947ca40324be7b904e222bddf479e";
     private static final String AUTH_URL = "https://accounts.spotify.com/api/token";
+
+    private HttpClient httpClient = HttpClient.newBuilder().build();
 
     private Gson gson = new Gson();
 
