@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5ddc8c6-5564-4c14-bf0d-8de8abec1d55" name="Changes" comment="getting songssssss">
+    <list default="true" id="b5ddc8c6-5564-4c14-bf0d-8de8abec1d55" name="Changes" comment="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey what i wonderful kind of day">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -207,7 +213,39 @@
       <option name="project" value="LOCAL" />
       <updated>1707579046109</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="kmssaj;kdhfk">
+      <option name="closed" value="true" />
+      <created>1707595678293</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707595678293</updated>
+    </task>
+    <task id="LOCAL-00016" summary="every day when you're walking down the street and everybody that you meet has an original point of view">
+      <option name="closed" value="true" />
+      <created>1707596558671</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707596558671</updated>
+    </task>
+    <task id="LOCAL-00017" summary="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey">
+      <option name="closed" value="true" />
+      <created>1707597481745</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1707597481745</updated>
+    </task>
+    <task id="LOCAL-00018" summary="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey what i wonderful kind of day">
+      <option name="closed" value="true" />
+      <created>1707598814050</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1707598814050</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -224,6 +262,10 @@
     <MESSAGE value="getting songs" />
     <MESSAGE value="getting songs1312" />
     <MESSAGE value="getting songssssss" />
-    <option name="LAST_COMMIT_MESSAGE" value="getting songssssss" />
+    <MESSAGE value="kmssaj;kdhfk" />
+    <MESSAGE value="every day when you're walking down the street and everybody that you meet has an original point of view" />
+    <MESSAGE value="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey" />
+    <MESSAGE value="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey what i wonderful kind of day" />
+    <option name="LAST_COMMIT_MESSAGE" value="every day when you're walking down the street and everybody that you meet has an original point of view and i say hey what i wonderful kind of day" />
   </component>
 </project>
