@@ -4,6 +4,9 @@ module com.example.demo1 {
     requires com.google.gson;
     requires java.net.http;
     requires org.jsoup;
+    requires java.desktop;
+    requires javafx.swing;
+    requires javafx.graphics;
 
 
     opens com.example.demo1 to javafx.fxml;
