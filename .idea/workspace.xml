@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5ddc8c6-5564-4c14-bf0d-8de8abec1d55" name="Changes" comment="rah rah rah ah ah">
+    <list default="true" id="b5ddc8c6-5564-4c14-bf0d-8de8abec1d55" name="Changes" comment="ptrining json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +43,9 @@
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "saachibranch",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "shruthihacks",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager" selected="Application.HelloApplication">
@@ -173,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707542233105</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="ptrining json">
+      <option name="closed" value="true" />
+      <created>1707575964197</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1707575964197</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -186,15 +196,16 @@
     <MESSAGE value="made it look a wee better" />
     <MESSAGE value="bvbbvbkngv" />
     <MESSAGE value="rah rah rah ah ah" />
-    <option name="LAST_COMMIT_MESSAGE" value="rah rah rah ah ah" />
+    <MESSAGE value="ptrining json" />
+    <option name="LAST_COMMIT_MESSAGE" value="ptrining json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java</url>
-          <line>112</line>
-          <properties method="main">
+          <line>191</line>
+          <properties class="com.example.demo1.HelloApplication">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
