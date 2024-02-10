@@ -1,8 +1,10 @@
 package com.example.demo1;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -54,6 +56,14 @@ public class HelloApplication extends Application {
         Text artistText2 = new Text("text");
 
 
+        // Setting VBox to take half of the available space
+        leftPane.setPrefWidth(400);
+        leftPane.setPadding(new Insets(40));
+        rightPane.setPrefWidth(400);
+        rightPane.setPadding(new Insets(40));
+
+
+
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
@@ -63,7 +73,7 @@ public class HelloApplication extends Application {
         // Adding the VBox nodes as children to the HBox
         root.getChildren().addAll(leftPane, rightPane);
 
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 800, 600);
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
