@@ -80,7 +80,9 @@ public class HelloApplication extends Application {
         choosePrompt.setFont(font2);
         ArtistScrape artistScrape = new ArtistScrape(this);
         Text websiteText = new Text("Text from website");
+        Button shuffleButton = new Button("Shuffle Artists");
         Button dataButton = new Button("Get Data");
+        HBox buttonHBox = new HBox();
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();
         ImageView artistImageView = new ImageView();
@@ -118,12 +120,11 @@ public class HelloApplication extends Application {
 
 
 
-
-
+        buttonHBox.getChildren().addAll(shuffleButton, dataButton);
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
-        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt,artistScrape, dataButton, warning);
+        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt,artistScrape, buttonHBox, warning);
 
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
