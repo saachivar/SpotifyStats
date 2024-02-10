@@ -171,18 +171,30 @@ public class HelloApplication extends Application {
             //artistText1.setText("Artist Details:" + responseBody);
 
             // Parse the JSON response to get the artist ID
-            JsonObject json = JsonParser.parseString(responseBody).getAsJsonObject();
-            String artistId = json.getAsJsonObject("artists")
+            JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
+            JsonObject artistObject = jsonResponse.getAsJsonObject("artists")
                     .getAsJsonArray("items")
                     .get(0)
-                    .getAsJsonObject()
-                    .get("id")
-                    .getAsString();
+                    .getAsJsonObject();
+
+            // Extract required artist details
+            String artistName1 = artistObject.get("name").getAsString();
+            String genre = extractGenre(artistObject);
+            int popularity = artistObject.get("popularity").getAsInt();
+
+            // Format the artist details
+            String artistDetails = "Name: " + artistName1 + "\n" +
+                    "Genre: " + genre + "\n" +
+                    "Popularity: " + popularity;
+
+            // Set the formatted artist details to artistText1
+            artistText1.setText(artistDetails);
+
+            // Parse the JSON response to get the artist ID
+            String artistId = artistObject.get("id").getAsString();
 
             // Fetch top tracks for the artist
             fetchTopTracks(artistId);
-            System.out.println("Top Tracks: " + responseBody);
-
         } else {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + statusCode);
