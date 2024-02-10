@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    private static final String API_URL = "https://api.spotify.com/v1/search";
+    private static final String ACCESS_TOKEN = SpotifyAuthenticator.getAccessToken();
     @Override
     public void start(Stage stage) throws IOException {
 
