@@ -61,7 +61,7 @@ public class HelloApplication extends Application {
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
         // Adding the VBox nodes as children to the HBox
-        root.getChildren().addAll(leftVBox, rightPane);
+        root.getChildren().addAll(leftPane, rightPane);
 
         Scene scene = new Scene(root, 320, 240);
 
