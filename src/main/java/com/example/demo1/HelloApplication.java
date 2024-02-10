@@ -96,21 +96,6 @@ public class HelloApplication extends Application {
             String artistName = insertBox.getText();
             try {
                 String artistDetails = getArtistDetails(artistName);
-                JsonObject json = JsonParser.parseString(artistDetails).getAsJsonObject();
-                JsonObject artistObject = json.getAsJsonObject("artists")
-                        .getAsJsonArray("items")
-                        .get(0)
-                        .getAsJsonObject();
-
-                // Extract artist details
-                String name = artistObject.get("name").getAsString();
-                String genre = extractGenre(artistObject);
-
-                // Update artistText1 with artist details
-                artistText1.setText("Artist: " + name );
-
-                // Update artistText2 with additional artist details
-                artistText2.setText("\nGenre: " + genre );
             }catch (IOException | InterruptedException e) {
 
                 warning.setText("Insert an artist!");
