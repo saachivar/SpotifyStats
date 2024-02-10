@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("Kfvcabskj");
+        System.out.println("Kfvcabskjj");
         launch();
     }
 }
