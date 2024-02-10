@@ -81,26 +81,36 @@ public class HelloApplication extends Application {
         choosePrompt.setFill(Color.BLANCHEDALMOND);
         leftPane.setSpacing(10);
         choosePrompt.setFont(font2);
+
+        //Artist Scrape
         ArtistScrape artistScrape = new ArtistScrape(this);
+
+        //Data from Website
         Text websiteText = new Text("Text from website");
+
+        //Insert Button
         Button shuffleButton = new Button("Shuffle Artists");
         Button dataButton = new Button("Get Data");
+
+        //Right pane
         HBox buttonHBox = new HBox();
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();
         ImageView artistImageView = new ImageView();
-        Text mainArtistText = new Text("text");
+        Text mainArtistText = new Text();
         HBox artistInfo2 = new HBox();
-        artistText1 = new Text("text");
-        artistText2 = new Text("text");
+
+        //Artist and track inputs
+        artistText1 = new Text();
+        artistText2 = new Text();
         warning = new Text("");
 
 
         // Setting VBox to take half of the available space
         leftPane.setPrefWidth(400);
         leftPane.setPadding(new Insets(25));
-        rightPane.setPrefWidth(350);
-        rightPane.setPadding(new Insets(25));
+        rightPane.setPrefWidth(500);
+        rightPane.setPadding(new Insets(30));
 
         dataButton.setOnAction(event -> {
             String artistName = insertBox.getText();
