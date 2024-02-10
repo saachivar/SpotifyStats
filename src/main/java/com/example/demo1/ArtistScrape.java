@@ -51,6 +51,8 @@ public class ArtistScrape extends VBox {
                     artistButtons[i] = new Button();
                     // Create a Text object and add it to the array
                     artistButtons[i].setText(text);
+                    artistButtons[i].setFont(Font.font("Spotify Circular", 10));
+                    artistButtons[i].setStyle(" -fx-font-style:italic; -fx-font-weight:bold");
                     // Set the action to be performed when the button is clicked
                     artistButtons[i].setOnAction(e -> {
                         main.setTextFieldText(text);

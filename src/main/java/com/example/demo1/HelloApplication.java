@@ -75,15 +75,22 @@ public class HelloApplication extends Application {
         //LeftVBox elements
 
         Text insertPrompt = new Text("Insert an artist:");
+        insertPrompt.setFill(Color.BLANCHEDALMOND);
+        insertPrompt.setFont(Font.font("Spotify Circular"));
+        insertPrompt.setStyle(" -fx-font-style:italic; -fx-font-weight:bold");
         Font font = Font.font(insertPrompt.getFont().getFamily(), 20);
         insertPrompt.setStyle("-fx-font: italic 20px \"System\";");
         insertPrompt.setFont(font);
         insertBox = new TextField();
+        insertBox.setFont(Font.font("Spotify Circular", 10));
         Text choosePrompt = new Text("... OR choose from the top Billboard 100");
         Font font2 = Font.font(choosePrompt.getFont().getFamily(), 14);
         choosePrompt.setFont(font2);
         StackPane textPane = new StackPane(choosePrompt);
         choosePrompt.setFill(Color.BLANCHEDALMOND);
+        choosePrompt.setFont(Font.font("Spotify Circular", 14));
+        choosePrompt.setStyle(" -fx-font-style:italic; -fx-font-weight:bold");
+
         leftPane.setSpacing(10);
         choosePrompt.setFont(font2);
 
@@ -107,6 +114,7 @@ public class HelloApplication extends Application {
         artistImageView.setFitHeight(100);
         artistImageView.setFitWidth(100);
 
+
         String imageUrl = "https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-black-17.png";
         artistImage = new Image(imageUrl);
         artistImageView.setImage(artistImage);
@@ -116,11 +124,15 @@ public class HelloApplication extends Application {
         HBox artistInfo2 = new HBox();
 
         //Artist and track inputs
-        artistText1 = new Text("Name of the Artist:");
-        artistText1.setStyle("-fx-font: bold 15px \"System\";");
-        artistText1.setStyle("-fx-font: italic 15px \"System\";");
+        artistText1 = new Text("Name of the Artist:" +"          ");
+        artistText1.setStyle(" -fx-font-style:italic");
+        artistText1.setFont(Font.font("Spotify Circular", 13));
 
-        artistText2 = new Text();
+        artistText2 = new Text( "Top tracks:");
+        artistText2.setStyle("-fx-font-style:italic");
+        artistText2.setFont(Font.font("Spotify Circular", 13));
+
+
         warning = new Text("");
 
 
@@ -220,12 +232,14 @@ public class HelloApplication extends Application {
             int popularity = artistObject.get("popularity").getAsInt();
 
             // Format the artist details
-            String artistDetails = "Name: " + artistName1 + "\n" +
+            String artistDetails = "Name:  " +"\n" + artistName1 + "\n" +
                     "Genre: " + genre + "\n" +
-                    "Popularity: " + popularity;
+                    "Popularity: " + popularity + "\n";
 
             // Set the formatted artist details to artistText1
             artistText1.setText(artistDetails);
+            Text artistDetailsText = new Text(artistDetails);
+            artistDetailsText.setFont(Font.font("Arial", 10));
 
             // Parse the JSON response to get the artist ID
             String artistId = artistObject.get("id").getAsString();
@@ -236,8 +250,10 @@ public class HelloApplication extends Application {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + statusCode);
         }
+
         return query;
     }
+
 
     private String fetchTopTracks(String artistId) throws IOException, InterruptedException {
         String apiUrl = "https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US";
@@ -263,7 +279,10 @@ public class HelloApplication extends Application {
                 trackNames.append(trackName).append("\n");
             }
             String topTracks = trackNames.toString();
+
             artistText2.setText("Top Tracks: " + topTracks);
+            Text topTracksText = new Text(topTracks);
+            topTracksText.setFont(Font.font("Arial", 10));
             // Process the JSON response here
             //System.out.println("Top Tracks: " + responseBody);
           //  artistText1.setText("Artist Details: " + artistDetails);
