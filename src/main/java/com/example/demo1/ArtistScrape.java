@@ -27,23 +27,29 @@ public class ArtistScrape extends VBox {
     public void scrapeBillBoard() {
         try {
             // Connect to the website and get the HTML
-            Document document = Jsoup.connect("https://www.billboard.com/charts/artist-100/").get();
+            Document document = Jsoup.connect("https://www.songkick.com/leaderboards/trending_artists").get();
 
             // Extract elements you're interested in
-            Elements elements = document.select("p"); // Select all <h1> elements
+            Elements elements = document.select("table.event-listings tbody tr"); // Select all <h1> elements
 
             Text[] artists = new Text[elements.size()];
 
             // Loop through the elements and create Text objects
             for (int i = 0; i < elements.size(); i++) {
+                // Select the element with class "name" within the row
                 Element element = elements.get(i);
-                String text = element.text();
-                System.out.println(text);
+                Element nameElement = element.selectFirst(".name");
+                if (nameElement != null) {
+                    String text = element.text();
+                    System.out.println(text);
 
-                // Create a Text object and add it to the array
-                artists[i] = new Text(text);
-                this.getChildren().add(artists[i]);
+                    // Create a Text object and add it to the array
+                    artists[i] = new Text(text);
+                    this.getChildren().add(artists[i]);
+                }
+
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
