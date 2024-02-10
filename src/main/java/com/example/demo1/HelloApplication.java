@@ -18,6 +18,7 @@ import java.io.IOException;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -98,6 +99,13 @@ public class HelloApplication extends Application {
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();
         ImageView artistImageView = new ImageView();
+        artistImageView.setFitHeight(100);
+        artistImageView.setFitWidth(100);
+
+        String imageUrl = "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png";
+        Image artistImage = new Image(imageUrl);
+        artistImageView.setImage(artistImage);
+
         Text mainArtistText = new Text();
         HBox artistInfo2 = new HBox();
 
