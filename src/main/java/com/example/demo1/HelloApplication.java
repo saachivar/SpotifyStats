@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -23,12 +24,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import javafx.scene.paint.Color;
+import javafx.scene.control.TextArea;
 
 
 import static com.example.demo1.SpotifyAuthenticator.getAccessToken;
 
 
 public class HelloApplication extends Application {
+
     private static final String API_URL = "https://api.spotify.com/v1/search";
     private static final String ACCESS_TOKEN;
 
@@ -43,13 +46,15 @@ public class HelloApplication extends Application {
     private TextField insertBox;
     private Text warning;
 
+    private TextArea topTracksTextArea;
+
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
         String accessToken = getAccessToken();
         System.out.println("Access token: " + accessToken);
-
+        topTracksTextArea = new TextArea();
 
         // Creating an HBox as the root node
         HBox root = new HBox();
@@ -158,7 +163,7 @@ public class HelloApplication extends Application {
                     .getAsString();
 
             // Fetch top tracks for the artist
-            fetchTopTracks(artistId);
+            fetchTopTracksAndUpdateUI(artistId);
         } else {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + statusCode);
@@ -166,7 +171,7 @@ public class HelloApplication extends Application {
         return query;
     }
 
-    private String fetchTopTracks(String artistId) throws IOException, InterruptedException {
+    private void fetchTopTracksAndUpdateUI(String artistId) throws IOException, InterruptedException {
         String apiUrl = "https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -183,16 +188,17 @@ public class HelloApplication extends Application {
             String responseBody = response.body();
             // Process the JSON response here
             System.out.println("Top Tracks: " + responseBody);
+
         } else {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve top tracks from Spotify API. Response code: " + statusCode);
         }
-        return response.body();
     }
 
     public void setTextFieldText(String text) {
         insertBox.setText(text);
     }
+
     private String extractGenre(JsonObject artistObject) {
         // Extract genre from the artistObject and return it
         // For example:
@@ -207,7 +213,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("sduhksjdhf");
+        System.out.println("sduhksjdhff");
         System.out.println("sdukhksjdhf");
         launch();
     }
