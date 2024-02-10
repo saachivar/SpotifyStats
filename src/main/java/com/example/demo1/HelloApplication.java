@@ -79,6 +79,7 @@ public class HelloApplication extends Application {
         choosePrompt.setFill(Color.BLANCHEDALMOND);
         leftPane.setSpacing(10);
         choosePrompt.setFont(font2);
+        ArtistScrape artistScrape = new ArtistScrape();
         Text websiteText = new Text("text from website");
         Button dataButton = new Button("Get Data");
         VBox rightPane = new VBox();
@@ -115,7 +116,7 @@ public class HelloApplication extends Application {
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
-        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt, websiteText, dataButton);
+        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt, artistScrape, dataButton);
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
         // Adding the VBox nodes as children to the HBox
@@ -125,7 +126,7 @@ public class HelloApplication extends Application {
 
 
         Scene scene = new Scene(root, 800, 600);
-        this.scrapeBillBoard();
+
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -184,22 +185,7 @@ public class HelloApplication extends Application {
     } // getArtistDetails
 
 
-    public void scrapeBillBoard() {
-        try {
-            // Connect to the website and get the HTML
-            Document document = Jsoup.connect("https://www.billboard.com/charts/artist-100/").get();
 
-            // Extract elements you're interested in
-            Elements elements = document.select("h1"); // Select all <h1> elements
-
-            // Iterate over the elements and print them
-            for (Element element : elements) {
-                System.out.println(element.text());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 
