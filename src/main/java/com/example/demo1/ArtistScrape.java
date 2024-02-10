@@ -62,7 +62,7 @@ public class ArtistScrape extends VBox {
                     });
                     this.getChildren().add(artistButtons[i]);
                 } else {
-                    System.out.println("nulll");
+                    System.out.print("");
                 }
 
             }
