@@ -119,6 +119,10 @@ public class HelloApplication extends Application {
             }
         });
 
+        shuffleButton.setOnAction(event -> {
+            artistScrape.shuffleArtists();
+        });
+
 
 
 

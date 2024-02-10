@@ -22,6 +22,8 @@ import org.jsoup.select.Elements;
 import static com.example.demo1.SpotifyAuthenticator.getAccessToken;
 public class ArtistScrape extends VBox {
     private HelloApplication main;
+    private Button[] artistButtons = new Button[25];
+    Elements elements;
     public ArtistScrape(HelloApplication main) {
         this.main = main;
         this.scrapeBillBoard();
@@ -32,16 +34,17 @@ public class ArtistScrape extends VBox {
             Document document = Jsoup.connect("https://www.billboard.com/charts/artist-100/").get();
 
             // Extract elements you're interested in
-            Elements elements = document.select("h3"); // Select all <h1> elements
-            Button[] artistButtons = new Button[25];
+            elements = document.select("h3"); // Select all <h1> elements
             System.out.println(elements.size());
 
             // Loop through the elements and create Text objects
-            for (int i = 4; i < 25; i+=2) {
+            for (int i = 4; i < 25; i++) {
+                int k = (int) (Math.random() * 21) + 4;
+
                 // Select the element with class "name" within the row
-                Element element = elements.get(i);
+                Element element = elements.get(k);
               //  Element nameElement = element.selectFirst("h3");
-                if (element != null) {
+                if (element != null && !(element.text().equals("Imprint/Promotion Label:"))) {
                     String text = element.text();
 
                     System.out.println(text);
@@ -67,4 +70,16 @@ public class ArtistScrape extends VBox {
         }
     }
 
+    public void shuffleArtists() {
+        for (int i = 4; i < 25; i++) {
+            int k = (int) (Math.random() * 21) + 4;
+
+            // Select the element with class "name" within the row
+            Element element = elements.get(k);
+            if (element != null && !(element.text().equals("Imprint/Promotion Label:"))) {
+                artistButtons[i].setText(element.text());
+            }
+
+        }
+    }
 }
