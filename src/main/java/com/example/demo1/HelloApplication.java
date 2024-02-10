@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+
+
 public class HelloApplication extends Application {
     private static final String API_URL = "https://api.spotify.com/v1/search";
     private static final String ACCESS_TOKEN;
@@ -31,7 +36,15 @@ public class HelloApplication extends Application {
         HBox root = new HBox();
 
         // Creating two VBox nodes
-        VBox leftVBox = new VBox();
+        VBox leftPane = new VBox();
+
+        //LeftVBox elements
+        Text insertPrompt = new Text("Insert an artist:");
+        TextField insertBox = new TextField();
+        Text choosePrompt = new Text("... OR choose from the top Billboard 100");
+        Text websiteText = new Text("text from website");
+        Button dataButton = new Button("Get Data");
+
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();
         ImageView artistImageView = new ImageView();
@@ -44,7 +57,7 @@ public class HelloApplication extends Application {
         artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
         artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
-        leftVBox.getChildren().add(new javafx.scene.control.Label("Left VBox"));
+        leftPane.getChildren().addAll(insertPrompt, insertBox, choosePrompt, websiteText, dataButton);
         rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
         // Adding the VBox nodes as children to the HBox
@@ -63,7 +76,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("ad;fkfkkk");
+        System.out.println("ad;fkfkkkhjhj");
         launch();
     }
 }
