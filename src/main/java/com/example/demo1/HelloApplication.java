@@ -23,13 +23,13 @@ public class HelloApplication extends Application {
     static {
         try {
             ACCESS_TOKEN = SpotifyAuthenticator.getAccessToken();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, InterruptedException {
 
         String accessToken = SpotifyAuthenticator.getAccessToken();
         System.out.println("Access token: " + accessToken);
@@ -89,7 +89,7 @@ public class HelloApplication extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println(" hiiiiii ");
+        System.out.println("ad;fkfkkkhjhji");
         launch();
     }
 }
