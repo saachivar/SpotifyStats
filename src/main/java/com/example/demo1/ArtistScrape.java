@@ -49,7 +49,7 @@ public class ArtistScrape extends VBox {
                     artists[i] = new Text(text);
                     this.getChildren().add(artists[i]);
                 } else {
-                    System.out.println("null");
+                    System.out.println("nulll");
                 }
 
             }
