@@ -69,6 +69,7 @@ public class HelloApplication extends Application {
         VBox leftPane = new VBox();
 
         //LeftVBox elements
+
         Text insertPrompt = new Text("Insert an artist:");
         Font font = Font.font(insertPrompt.getFont().getFamily(), 20);
         insertPrompt.setStyle("-fx-font: italic 20px \"System\";");
@@ -101,7 +102,10 @@ public class HelloApplication extends Application {
         HBox artistInfo2 = new HBox();
 
         //Artist and track inputs
-        artistText1 = new Text();
+        artistText1 = new Text("Name of the Artist:");
+        artistText1.setStyle("-fx-font: bold 15px \"System\";");
+        artistText1.setStyle("-fx-font: italic 15px \"System\";");
+
         artistText2 = new Text();
         warning = new Text("");
 
@@ -171,7 +175,7 @@ public class HelloApplication extends Application {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQB_3hGLVjpwBsF5Rpqs5Y3wvssw3V4p1LkZLcRs-wq685KzlDs1Xl6R_4-rEHgETnOzK_h2aL9o1mQ3kpg_BSBTVw5NsqAUymLlUhkSKnmMvvDorIY") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQAe3iwjYGHgQi1XD6ewIsZ_PNEHOwT-SKmUfkjGzWP55wLKKgMvPoxrKH_yS703nM9eeEAPYvpn8ALF3YyL4M6FiGv8iyJtF3jY-VzhYfycyXlaA9E") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -222,7 +226,7 @@ public class HelloApplication extends Application {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQB_3hGLVjpwBsF5Rpqs5Y3wvssw3V4p1LkZLcRs-wq685KzlDs1Xl6R_4-rEHgETnOzK_h2aL9o1mQ3kpg_BSBTVw5NsqAUymLlUhkSKnmMvvDorIY") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQAe3iwjYGHgQi1XD6ewIsZ_PNEHOwT-SKmUfkjGzWP55wLKKgMvPoxrKH_yS703nM9eeEAPYvpn8ALF3YyL4M6FiGv8iyJtF3jY-VzhYfycyXlaA9E") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
