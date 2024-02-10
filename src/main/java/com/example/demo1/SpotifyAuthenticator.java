@@ -36,7 +36,6 @@ public class SpotifyAuthenticator {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         int statusCode = response.statusCode();
-        System.out.println("status code is" + statusCode);
         if (statusCode == 200) {
             return response.body(); // to return the json string
             //JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonObject();
