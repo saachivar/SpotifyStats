@@ -7,11 +7,9 @@ import javafx.embed.swing.SwingNode;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -61,8 +59,9 @@ public class HelloApplication extends Application {
 
         // Creating an HBox as the root node
         HBox root = new HBox();
+        root.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        root.setStyle("-fx-border-color: red; -fx-border-width: 5px;");
+        root.setStyle("-fx-border-color: BLACK; -fx-border-width: 15px;");
 
         // Creating two VBox nodes
         VBox leftPane = new VBox();
@@ -74,8 +73,10 @@ public class HelloApplication extends Application {
         insertPrompt.setFont(font);
         TextField insertBox = new TextField();
         Text choosePrompt = new Text("... OR choose from the top Billboard 100");
-        choosePrompt.setStyle("-fx-text-fill: magenta;");
-        Font font2 = Font.font(choosePrompt.getFont().getFamily(), 13);// Change color to blue
+        Font font2 = Font.font(choosePrompt.getFont().getFamily(), 13);
+        choosePrompt.setFont(font2);
+        StackPane textPane = new StackPane(choosePrompt);
+        choosePrompt.setFill(Color.BLANCHEDALMOND);
         leftPane.setSpacing(10);
         choosePrompt.setFont(font2);
         Text websiteText = new Text("text from website");
