@@ -50,7 +50,9 @@ public class HelloApplication extends Application {
     private Text artistText1;
     private Text artistText2;
 
+    private ImageView artistImageView;
     private TextArea topTracksTextArea;
+    private Image artistImage;
 
 
     @Override
@@ -98,12 +100,12 @@ public class HelloApplication extends Application {
         HBox buttonHBox = new HBox();
         VBox rightPane = new VBox();
         HBox artistInfo1 = new HBox();
-        ImageView artistImageView = new ImageView();
+        artistImageView = new ImageView();
         artistImageView.setFitHeight(100);
         artistImageView.setFitWidth(100);
 
         String imageUrl = "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png";
-        Image artistImage = new Image(imageUrl);
+        artistImage = new Image(imageUrl);
         artistImageView.setImage(artistImage);
 
         Text mainArtistText = new Text();
@@ -126,10 +128,14 @@ public class HelloApplication extends Application {
 
         dataButton.setOnAction(event -> {
             String artistName = insertBox.getText();
+            ImageScraper imageScraper = new ImageScraper (artistName);
+            artistImage = new Image(imageScraper.getImageUrl());
+            artistImageView.setImage(artistImage);
+
             if (!artistName.isEmpty()) { // Check if the artist name is provided
                 try {
                     String artistDetails = getArtistDetails (artistName);
-                    System.out.println(artistDetails);
+
                   /*  String topTracks = fetchTopTracks(artistDetails);
                     // Update UI elements with artist details and top tracks
                     artistText1.setText("Artist Details: " + artistDetails);
@@ -140,6 +146,7 @@ public class HelloApplication extends Application {
             } else {
                 warning.setText("Insert an artist!");
             }
+
         });
 
         shuffleButton.setOnAction(event -> {

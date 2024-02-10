@@ -35,7 +35,7 @@ public class ArtistScrape extends VBox {
 
             // Extract elements you're interested in
             elements = document.select("h3"); // Select all <h1> elements
-            System.out.println(elements.size());
+
 
             // Loop through the elements and create Text objects
             for (int i = 4; i < 25; i++) {
@@ -47,14 +47,14 @@ public class ArtistScrape extends VBox {
                 if (element != null && !(element.text().equals("Imprint/Promotion Label:"))) {
                     String text = element.text();
 
-                    System.out.println(text);
+
                     artistButtons[i] = new Button();
                     // Create a Text object and add it to the array
                     artistButtons[i].setText(text);
                     // Set the action to be performed when the button is clicked
                     artistButtons[i].setOnAction(e -> {
                         main.setTextFieldText(text);
-                        System.out.println(text);
+
                         // Add your code here to handle the button click event
                         // For example, you can open a new window, update UI, etc.
                     });
