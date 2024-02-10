@@ -70,16 +70,29 @@ public class ArtistScrape extends VBox {
         }
     }
 
+    private int artistShuffle = 25;
     public void shuffleArtists() {
-        for (int i = 4; i < 25; i++) {
-            int k = (int) (Math.random() * 21) + 4;
+        for (int i = artistShuffle; i < artistShuffle + 25; i++) {
+
 
             // Select the element with class "name" within the row
-            Element element = elements.get(k);
-            if (element != null && !(element.text().equals("Imprint/Promotion Label:"))) {
-                artistButtons[i].setText(element.text());
+            Element element = elements.get(i);
+            if (element != null && !(element.text().equals("Imprint/Promotion Label:" ))) {
+                if (artistButtons[i-artistShuffle]!=null) {
+                    artistButtons[i - artistShuffle].setText(element.text());
+                    artistButtons[i - artistShuffle].setOnAction(e -> {
+                        main.setTextFieldText(element.text());
+                        // Add your code here to handle the button click event
+                        // For example, you can open a new window, update UI, etc.
+                    });
+                }
             }
 
+        }
+        if (artistShuffle > elements.size() - 25) {
+            artistShuffle = 0;
+        } else {
+            artistShuffle += 25;
         }
     }
 }
