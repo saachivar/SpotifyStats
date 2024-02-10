@@ -58,7 +58,7 @@ public class HelloApplication extends Application {
 
         // Creating an HBox as the root node
         HBox root = new HBox();
-        root.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, new CornerRadii(10) ,Insets.EMPTY)));
+        root.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, new CornerRadii(10) ,Insets.EMPTY)));
 
         root.setStyle("-fx-border-color:BLACK; -fx-border-width: 15px;");
 
@@ -94,15 +94,22 @@ public class HelloApplication extends Application {
         // Setting VBox to take half of the available space
         leftPane.setPrefWidth(400);
         leftPane.setPadding(new Insets(25));
-        rightPane.setPrefWidth(400);
+        rightPane.setPrefWidth(350);
         rightPane.setPadding(new Insets(25));
 
         dataButton.setOnAction(event -> {
             String artistName = insertBox.getText();
-            try {
-                String artistDetails = getArtistDetails(artistName);
-            }catch (IOException | InterruptedException e) {
-
+            if (!artistName.isEmpty()) { // Check if the artist name is provided
+                try {
+                    String artistDetails = getArtistDetails(artistName);
+                    String topTracks = fetchTopTracksAndUpdateUI(artistDetails);
+                    // Update UI elements with artist details and top tracks
+                    artistText1.setText("Artist Details: " + artistDetails);
+                    artistText2.setText("Top Tracks: " + topTracks);
+                } catch (IOException | InterruptedException e) {
+                    warning.setText("Error occurred while fetching data!");
+                }
+            } else {
                 warning.setText("Insert an artist!");
             }
         });
@@ -171,7 +178,7 @@ public class HelloApplication extends Application {
         return query;
     }
 
-    private void fetchTopTracksAndUpdateUI(String artistId) throws IOException, InterruptedException {
+    private String fetchTopTracksAndUpdateUI(String artistId) throws IOException, InterruptedException {
         String apiUrl = "https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -193,6 +200,7 @@ public class HelloApplication extends Application {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve top tracks from Spotify API. Response code: " + statusCode);
         }
+        return apiUrl;
     }
 
     public void setTextFieldText(String text) {
