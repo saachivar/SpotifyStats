@@ -22,5 +22,4 @@ public class ArtistDetails {
     public String getImageUrl() {
         return imageUrl;
     }
-
 }
