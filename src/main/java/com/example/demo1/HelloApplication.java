@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.application.Application;
@@ -105,7 +106,7 @@ public class HelloApplication extends Application {
             String artistName = insertBox.getText();
             if (!artistName.isEmpty()) { // Check if the artist name is provided
                 try {
-                    String artistDetails = getArtistDetails(artistName);
+                    String artistDetails = getArtistDetails (artistName);
                     System.out.println(artistDetails);
                   /*  String topTracks = fetchTopTracks(artistDetails);
                     // Update UI elements with artist details and top tracks
@@ -145,9 +146,13 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public String getArtistDetails(String artistName) throws IOException, InterruptedException {
+
+
+    private String getArtistDetails(String artistName) throws IOException, InterruptedException {
         String query = artistName.replace(" ", "%20"); // Encode spaces in the artist name
         String apiUrl = API_URL + "?q=" + query + "&type=artist";
+
+
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -163,6 +168,7 @@ public class HelloApplication extends Application {
             String responseBody = response.body();
             // Process the JSON response here
             System.out.println("Artist Details: " + responseBody);
+            //artistText1.setText("Artist Details:" + responseBody);
 
             // Parse the JSON response to get the artist ID
             JsonObject json = JsonParser.parseString(responseBody).getAsJsonObject();
@@ -175,6 +181,8 @@ public class HelloApplication extends Application {
 
             // Fetch top tracks for the artist
             fetchTopTracks(artistId);
+            System.out.println("Top Tracks: " + responseBody);
+
         } else {
             // Handle unsuccessful response
             throw new IOException("Failed to retrieve artist details from Spotify API. Response code: " + statusCode);
@@ -197,10 +205,20 @@ public class HelloApplication extends Application {
         if (statusCode == 200) {
             // Handle successful response
             String responseBody = response.body();
+            JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
+            JsonArray tracks = jsonResponse.getAsJsonArray("tracks");
+            StringBuilder trackNames = new StringBuilder();
+            for (JsonElement track : tracks) {
+                JsonObject trackObject = track.getAsJsonObject();
+                String trackName = trackObject.get("name").getAsString();
+                trackNames.append(trackName).append("\n");
+            }
+            String topTracks = trackNames.toString();
+            artistText2.setText("Top Tracks: " + topTracks);
             // Process the JSON response here
-            System.out.println("Top Tracks: " + responseBody);
+            //System.out.println("Top Tracks: " + responseBody);
           //  artistText1.setText("Artist Details: " + artistDetails);
-            artistText2.setText("Top Tracks: " + responseBody);
+            //artistText2.setText("Top Tracks: " + responseBody);
 
         } else {
             // Handle unsuccessful response
