@@ -1,8 +1,9 @@
 package com.example.demo1;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,14 +20,23 @@ public class HelloApplication extends Application {
 
         // Creating two VBox nodes
         VBox leftVBox = new VBox();
-        VBox rightVBox = new VBox();
+        VBox rightPane = new VBox();
+        HBox artistInfo1 = new HBox();
+        ImageView artistImageView = new ImageView();
+        Text mainArtistText = new Text("text");
+        HBox artistInfo2 = new HBox();
+        Text artistText1 = new Text("text");
+        Text artistText2 = new Text("text");
 
+
+        artistInfo1.getChildren().addAll(artistImageView, mainArtistText);
+        artistInfo2.getChildren().addAll(artistText1, artistText2);
         // Adding some content to the VBox nodes (for demonstration purposes)
         leftVBox.getChildren().add(new javafx.scene.control.Label("Left VBox"));
-        rightVBox.getChildren().add(new javafx.scene.control.Label("Right VBox"));
+        rightPane.getChildren().addAll(artistInfo1, artistInfo2);
 
         // Adding the VBox nodes as children to the HBox
-        root.getChildren().addAll(leftVBox, rightVBox);
+        root.getChildren().addAll(leftVBox, rightPane);
 
         Scene scene = new Scene(root, 320, 240);
 
