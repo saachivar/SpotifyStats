@@ -148,7 +148,7 @@ public class HelloApplication extends Application {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "QDMi3hTktqAsCc5FBa58TwXtk_PPndejhKgYPyCBTq5JlLp9CXTPRhUdhIZbGmRLW40gQZjmvweyoGahblRuGewNQXgYCdkU4w68YXF8x9KXalFQFk") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQD0QELco500LKku78nzxlQOAzT1TA73h-jCYXS3cAuQK8LKr2lV5ITvKWa7zaT_mfl1qvJd2nr6l7uWNwvlcSJEK6UIAL03-s7rtYLXAGtjR6gwPDA") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -184,7 +184,7 @@ public class HelloApplication extends Application {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .header("Authorization", "Bearer " + "BQDMi3hTktqAsCc5FBa58TwXtk_PPndejhKgYPyCBTq5JlLp9CXTPRhUdhIZbGmRLW40gQZjmvweyoGahblRuGewNQXgYCdkU4w68YXF8x9KXalFQFk") // Use "Bearer" prefix for the token
+                .header("Authorization", "Bearer " + "BQD0QELco500LKku78nzxlQOAzT1TA73h-jCYXS3cAuQK8LKr2lV5ITvKWa7zaT_mfl1qvJd2nr6l7uWNwvlcSJEK6UIAL03-s7rtYLXAGtjR6gwPDA") // Use "Bearer" prefix for the token
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
